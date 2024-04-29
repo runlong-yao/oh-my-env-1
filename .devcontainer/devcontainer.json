@@ -4,17 +4,6 @@
 	"name": "OhMyEnv",
 	"context": "..",
 	"dockerFile": "./Dockerfile",
-	"settings": {},
-	"extensions": [
-		// "golang.go",
-		"dbaeumer.vscode-eslint",
-		"esbenp.prettier-vscode",
-		// "rebornix.ruby",
-		"castwide.solargraph",
-		"kaiwood.endwise",
-		"sianglim.slim",
-		"jnbt.vscode-rufo"
-	],
 	"runArgs": [
 		"--privileged",
 		"--dns=114.114.114.114", // 如果你用的是长城宽带，在遇到网络不通的时候，可以删掉这一行
@@ -55,7 +44,16 @@
 			"settings": {
 				"http.proxy": "http://host-proxy:7890"
 			},
-			"extensions": [],
+			"extensions": [
+				// "golang.go",
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				// "rebornix.ruby",
+				"castwide.solargraph",
+				"kaiwood.endwise",
+				"sianglim.slim",
+				"jnbt.vscode-rufo"
+			],
 		}
 	}
 }
