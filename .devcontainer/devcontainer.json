@@ -6,10 +6,10 @@
 	"dockerFile": "./Dockerfile",
 	"settings": {},
 	"extensions": [
-		"golang.go",
+		// "golang.go",
 		"dbaeumer.vscode-eslint",
 		"esbenp.prettier-vscode",
-		"rebornix.ruby",
+		// "rebornix.ruby",
 		"castwide.solargraph",
 		"kaiwood.endwise",
 		"sianglim.slim",
@@ -17,17 +17,20 @@
 	],
 	"runArgs": [
 		"--privileged",
-		// "--dns=114.114.114.114", // 如果你用的是长城宽带，在遇到网络不通的时候，可以删掉这一行
-		"--network=network1"
-
+		"--dns=114.114.114.114", // 如果你用的是长城宽带，在遇到网络不通的时候，可以删掉这一行
+		"--network=network1",
+		"--add-host=host-proxy:host-gateway"
 	],
 	"containerEnv": {
-		"DISPLAY": "host.docker.internal:0.0"
+		"DISPLAY": "host.docker.internal:0.0",
+		"http_proxy": "http://host-proxy:7890",
+		"https_proxy": "http://host-proxy:7890",
+		"all_proxy": "socks5://host-proxy:7890"
 	},
 	"mounts": [
-    "source=docker,target=/var/lib/docker,type=volume",
+		"source=docker,target=/var/lib/docker,type=volume",
 		"source=config,target=/root/.config,type=volume",
-    "source=vscode-extensions,target=/root/.vscode-server/extensions,type=volume",
+		"source=vscode-extensions,target=/root/.vscode-server/extensions,type=volume",
 		"source=ssh,target=/root/.ssh,type=volume",
 		"source=go-bin,target=/root/go/bin,type=volume",
 		"source=pnpm-bin,target=/root/.local/share/pnpm,type=volume",
@@ -44,5 +47,15 @@
 	// "overrideCommand": false,
 	// "forwardPorts": [],
 	// "postCreateCommand": "apt-get update && apt-get install -y curl",
-	"postStartCommand": "nohup bash -c '/usr/sbin/dockerd &> /var/log/dockerd.log &' &> /dev/null"
+	"postStartCommand": "nohup bash -c '/usr/sbin/dockerd &> /var/log/dockerd.log &' &> /dev/null",
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"http.proxy": "http://host-proxy:7890"
+			},
+			"extensions": [],
+		}
+	}
 }
