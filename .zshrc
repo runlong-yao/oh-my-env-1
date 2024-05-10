@@ -78,6 +78,11 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
